@@ -10,23 +10,32 @@ public class LxpApplication {
 	static InstructorController instructorController = new InstructorController();
 
 	public static void main(String[] args) {
+		boolean isRunning = true;
 
-		while (true) {
+		while (isRunning) {
 			mainOutputView.printMainMenu();
 			String selection = mainInputView.readSelection();
-
-			if (selection.equals("3")) {
-				break;
-			}
-			validateSelection(selection);
+			isRunning = validateSelection(selection);
 		}
 	}
 
-	public static void validateSelection(String selection) {
-		if (selection.equals("1")) {
-			//강의 관리 기능 추가 예정
-		} else if (selection.equals("2")) {
-			instructorController.handleSelection();
+	private static boolean validateSelection(String selection) {
+		switch (selection) {
+			case "1" -> {
+				System.out.println("아직 개발되지 않은 메뉴입니다.");
+				return true;
+			}
+			case "2" -> {
+				instructorController.handleSelection();
+				return true;
+			}
+			case "3" -> {
+				return false;
+			}
+			default -> {
+				System.out.println("잘못된 번호입니다.");
+				return true;
+			}
 		}
 	}
 }
