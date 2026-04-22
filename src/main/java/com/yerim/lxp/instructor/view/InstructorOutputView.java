@@ -1,5 +1,7 @@
 package com.yerim.lxp.instructor.view;
 
+import com.yerim.lxp.instructor.domain.Instructor;
+
 public class InstructorOutputView {
 
 	public void printInstructorMainMenu() {
@@ -15,4 +17,12 @@ public class InstructorOutputView {
 			------------------------------------------------------------
 			""");
 	}
+
+	public void printCreateInstructor() {}
+
+	public void printCreated(Instructor instructor) {
+		System.out.println("강사가 등록되었습니다. id: " + instructor.getId());
+	}
+
+	public void showAllInstructors() {}
 }
