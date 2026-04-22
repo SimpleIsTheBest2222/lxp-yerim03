@@ -19,7 +19,7 @@ public class InstructorController {
 			if (selection.equals("1")) {
 				createInstructor();
 			} else if (selection.equals("2")) {
-				System.out.println("아직 개발되지 않은 메뉴이니다.");
+				System.out.println("아직 개발되지 않은 메뉴입니다.");
 			} else if (selection.equals("3")) {
 				break;
 			}
