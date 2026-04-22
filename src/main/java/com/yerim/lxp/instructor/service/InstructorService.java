@@ -5,7 +5,7 @@ import com.yerim.lxp.instructor.dto.InstructorRequest;
 import com.yerim.lxp.instructor.repository.InMemoryInstructorRepository;
 
 public class InstructorService {
-	static InMemoryInstructorRepository instructorRepository;
+	private final InMemoryInstructorRepository instructorRepository = new InMemoryInstructorRepository();
 
 	public Instructor createInstructor(InstructorRequest instructorRequest) {
 		Instructor instructor = Instructor.create(instructorRequest.getName(), instructorRequest.getIntroduction());
