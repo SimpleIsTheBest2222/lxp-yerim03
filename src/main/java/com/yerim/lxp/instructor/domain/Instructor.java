@@ -10,6 +10,10 @@ public class Instructor {
 
 	private Instructor() {}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public static Instructor create(String name, String introduction) {
 		Instructor instructor = new Instructor();
 		instructor.name = validateName(name);
