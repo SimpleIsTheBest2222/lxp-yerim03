@@ -16,7 +16,7 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 	@Override
 	public Instructor save(Instructor instructor) {
 		if (instructor.getId() == null) {
-			instructor.setId(++sequence);
+			instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
 		}
 		Instructor saveInstructor = instructor;
 		storage.put(saveInstructor.getId(), saveInstructor);
