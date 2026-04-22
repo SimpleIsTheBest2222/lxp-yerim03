@@ -2,6 +2,7 @@ package com.yerim.lxp.instructor.controller;
 
 import com.yerim.lxp.instructor.domain.Instructor;
 import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.repository.InMemoryInstructorRepository;
 import com.yerim.lxp.instructor.service.InstructorService;
 import com.yerim.lxp.instructor.view.InstructorInputView;
 import com.yerim.lxp.instructor.view.InstructorOutputView;
@@ -9,7 +10,7 @@ import com.yerim.lxp.instructor.view.InstructorOutputView;
 public class InstructorController {
 	static InstructorOutputView output = new InstructorOutputView();
 	static InstructorInputView input = new InstructorInputView();
-	static InstructorService instructorService = new InstructorService();
+	static InstructorService instructorService = new InstructorService(new InMemoryInstructorRepository());
 
 	public void handleSelection() {
 		while(true) {
