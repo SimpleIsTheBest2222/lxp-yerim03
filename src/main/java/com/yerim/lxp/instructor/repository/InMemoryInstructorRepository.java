@@ -10,7 +10,7 @@ import com.yerim.lxp.instructor.service.InstructorRepository;
 
 public class InMemoryInstructorRepository implements InstructorRepository {
 
-	private Map<Long, Instructor> storage = new HashMap<>();
+	private final Map<Long, Instructor> storage = new HashMap<>();
 	private Long sequence = 0L;
 
 	@Override
@@ -20,7 +20,6 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 		}
 		Instructor saveInstructor = instructor;
 		storage.put(saveInstructor.getId(), saveInstructor);
-
 		return saveInstructor;
 	}
 
