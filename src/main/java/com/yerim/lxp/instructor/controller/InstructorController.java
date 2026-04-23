@@ -20,16 +20,62 @@ public class InstructorController {
 			if (selection.equals("1")) {
 				createInstructor();
 			} else if (selection.equals("2")) {
-				System.out.println("아직 개발되지 않은 메뉴입니다.");
+				getAllInstructors();
 			} else if (selection.equals("3")) {
 				break;
+			} else {
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			}
 		}
 	}
 
 	private void createInstructor() {
-		InstructorRequest instructorRequest = input.createInstructor();
+		output.printCreateInstructor();
+		InstructorRequest instructorRequest = input.inputCreateInstructor();
 		Instructor created = instructorService.createInstructor(instructorRequest);
 		output.printCreated(created);
+	}
+
+	private void getAllInstructors() {
+		while (true) {
+			output.showAllInstructors();
+			String selection = input.readSelection();
+
+			if (selection.equals("1")) {
+				getInstructorById();
+			} else if (selection.equals("2")) {
+				break;
+			} else {
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
+	}
+
+	private void getInstructorById() {
+		while (true) {
+			output.printDetailInstructor();
+			String selection = input.readSelection();
+
+			if (selection.equals("1")) {
+				updateInstructor();
+			} else if (selection.equals("2")) {
+				deleteInstructor();
+				break;
+			} else if (selection.equals("3")) {
+				break;
+			} else {
+				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+			}
+		}
+	}
+
+	private void updateInstructor() {
+		output.printUpdateInstructor();
+		input.inputUpdateInstructor();
+		output.printUpdated();
+	}
+
+	private void deleteInstructor() {
+		output.printDeleted();
 	}
 }
