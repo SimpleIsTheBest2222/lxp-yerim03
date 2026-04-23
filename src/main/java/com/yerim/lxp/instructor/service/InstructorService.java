@@ -17,8 +17,10 @@ public class InstructorService {
 
 	public void getAllInstructors() {}
 
-	public void updateInstructor() {}
+	public void getInstructorById(Long id) {}
 
-	public void deleteInstructor() {}
+	public void updateInstructor(Long id, InstructorRequest instructorRequest) {}
+
+	public void deleteInstructor(Long id) {}
 
 }

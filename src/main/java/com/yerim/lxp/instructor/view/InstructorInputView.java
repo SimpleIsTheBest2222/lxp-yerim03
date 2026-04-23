@@ -13,7 +13,7 @@ public class InstructorInputView {
 		return selection;
 	}
 
-	public InstructorRequest createInstructor() {
+	public InstructorRequest inputCreateInstructor() {
 		System.out.print("이름  :  ");
 		String name = sc.nextLine();
 		System.out.print("소개  :  ");
@@ -23,8 +23,15 @@ public class InstructorInputView {
 
 	public void selectInstructor() {}
 
-	public void deleteInstructor() {}
 
+	public String readDetailSelection() {
+		return null;
+	}
 
-
+	public void inputUpdateInstructor() {
+		System.out.print("이름  :  ");
+		String name = sc.nextLine();
+		System.out.print("소개  :  ");
+		String introduction = sc.nextLine();
+	}
 }
