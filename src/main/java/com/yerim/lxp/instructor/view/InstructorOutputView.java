@@ -79,7 +79,6 @@ public class InstructorOutputView {
 
 	public void printUpdateInstructor() {
 		System.out.print("""
-			
 			============================================================
 			                           강사 수정                           
 			============================================================
@@ -97,7 +96,6 @@ public class InstructorOutputView {
 			
 			""");
 	}
-
 
 	public void printDeleted() {
 		System.out.print("""
