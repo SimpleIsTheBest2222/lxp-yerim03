@@ -1,7 +1,11 @@
 package com.yerim.lxp.instructor.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.yerim.lxp.instructor.domain.Instructor;
 import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.dto.InstructorResponse;
 
 public class InstructorService {
 	private final InstructorRepository instructorRepository;
@@ -15,7 +19,20 @@ public class InstructorService {
 		return instructorRepository.save(instructor);
 	}
 
-	public void getAllInstructors() {}
+	public List<InstructorResponse> getAllInstructors() {
+		List<Instructor> instructors = instructorRepository.findAll();
+		List<InstructorResponse> responses = new ArrayList<>();
+
+		for (Instructor instructor : instructors) {
+			responses.add(new InstructorResponse(
+				instructor.getId(),
+				instructor.getName(),
+				instructor.getIntroduction()
+			));
+		}
+
+		return responses;
+	}
 
 	public void getInstructorById(Long id) {}
 

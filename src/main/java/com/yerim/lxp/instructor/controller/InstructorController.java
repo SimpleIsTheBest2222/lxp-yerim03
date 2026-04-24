@@ -1,7 +1,10 @@
 package com.yerim.lxp.instructor.controller;
 
+import java.util.List;
+
 import com.yerim.lxp.instructor.domain.Instructor;
 import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.dto.InstructorResponse;
 import com.yerim.lxp.instructor.repository.InMemoryInstructorRepository;
 import com.yerim.lxp.instructor.service.InstructorService;
 import com.yerim.lxp.instructor.view.InstructorInputView;
@@ -38,7 +41,13 @@ public class InstructorController {
 
 	private void getAllInstructors() {
 		while (true) {
-			output.showAllInstructors();
+			List<InstructorResponse> instructors = instructorService.getAllInstructors();
+
+			if (instructors.isEmpty()) {
+				System.out.println("등록된 강사가 없습니다.");
+			}
+
+			output.showAllInstructors(instructors);
 			String selection = input.readSelection();
 
 			if (selection.equals("1")) {

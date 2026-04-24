@@ -1,5 +1,6 @@
 package com.yerim.lxp.instructor.repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,9 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 	@Override
 	public Instructor save(Instructor instructor) {
 		if (instructor.getId() == null) {
-			instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
+			instructor = instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
 		}
+
 		Instructor saveInstructor = instructor;
 		storage.put(saveInstructor.getId(), saveInstructor);
 		return saveInstructor;
@@ -30,7 +32,13 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 
 	@Override
 	public List<Instructor> findAll() {
-		return List.of();
+		List<Instructor> instructorList = new ArrayList<>();
+		for (Instructor instructor : storage.values()) {
+			if (!instructor.isDeleted()) {
+				instructorList.add(instructor);
+			}
+		}
+		return instructorList;
 	}
 
 	@Override

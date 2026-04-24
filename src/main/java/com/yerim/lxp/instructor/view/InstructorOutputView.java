@@ -1,6 +1,9 @@
 package com.yerim.lxp.instructor.view;
 
+import java.util.List;
+
 import com.yerim.lxp.instructor.domain.Instructor;
+import com.yerim.lxp.instructor.dto.InstructorResponse;
 
 public class InstructorOutputView {
 
@@ -35,24 +38,26 @@ public class InstructorOutputView {
 		System.out.println("강사가 등록되었습니다. id: " + instructor.getId());
 	}
 
-	public void showAllInstructors() {
-		//모든 강사 조회 구현 예정
-
+	public void showAllInstructors(List<InstructorResponse> instructors) {
 		System.out.println("""
-			
+		
 			============================================================
 			                           강사 목록                           
 			============================================================
-			
-			  1. 홍길동
-			  2. 김남준
-			
+			""");
+
+		for (InstructorResponse instructor : instructors) {
+			System.out.println(instructor.getId() + ". " + instructor.getName());
+		}
+
+		System.out.println("""
+		
 			------------------------------------------------------------
 			  1. 강사 선택
 			  2. 뒤로 가기
-			
+		
 			------------------------------------------------------------
-			
+		
 			""");
 	}
 

@@ -7,6 +7,7 @@ public class Instructor {
 	private Long id;
 	private String name;
 	private String introduction;
+	private boolean isDeleted = false;
 
 	private Instructor() {}
 
@@ -64,5 +65,9 @@ public class Instructor {
 
 	public String getIntroduction() {
 		return introduction;
+	}
+
+	public boolean isDeleted() {
+		return isDeleted;
 	}
 }
