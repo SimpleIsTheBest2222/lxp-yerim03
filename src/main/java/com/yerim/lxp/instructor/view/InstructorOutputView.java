@@ -120,4 +120,8 @@ public class InstructorOutputView {
 		System.out.println(" 삭제가 완료되었습니다. id: " + response.getId());
 		System.out.println("------------------------------------------------------------");
 	}
+
+	public void printInvalidInputMessage() {
+		System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+	}
 }

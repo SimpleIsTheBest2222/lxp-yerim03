@@ -23,6 +23,9 @@ public class InstructorController {
 
 	public List<InstructorListResponse> findAll() {
 		List<Instructor> instructors = instructorService.findAll();
+		if (instructors.isEmpty()) {
+			System.out.println("등록된 강사가 없습니다.");
+		}
 
 		List<InstructorListResponse> responses = instructors.stream()
 			.map(instructor -> new InstructorListResponse(instructor.getId(), instructor.getName()))

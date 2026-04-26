@@ -26,9 +26,9 @@ public class InstructorViewFlow {
 			} else if (selection.equals("2")) {
 				findAllInstructor();
 			} else if (selection.equals("3")) {
-				break;
+				return;
 			} else {
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				outputView.printInvalidInputMessage();
 			}
 		}
 	}
@@ -43,10 +43,7 @@ public class InstructorViewFlow {
 	public void findAllInstructor() {
 		while (true) {
 			List<InstructorListResponse> responses = instructorController.findAll();
-			if (responses.isEmpty()) {
-				System.out.println("등록된 강사가 없습니다.");
-				break;
-			}
+
 			outputView.showAllInstructors(responses);
 
 			outputView.selectInstructorMenu();
@@ -54,20 +51,19 @@ public class InstructorViewFlow {
 			if (selection.equals("1")) {
 				showInstructorDetail();
 			} else if (selection.equals("2")) {
-				break;
+				return;
 			} else {
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				outputView.printInvalidInputMessage();
 			}
 		}
 	}
 
 	public void showInstructorDetail() {
 		Long id = inputView.selectInstructor();
+		InstructorDetailResponse response = instructorController.findById(id);
+		outputView.showDetailInstructor(response);
 
 		while (true) {
-			InstructorDetailResponse response = instructorController.findById(id);
-			outputView.showDetailInstructor(response);
-
 			outputView.detailInstructorMenu();
 			String selection = inputView.read();
 
@@ -75,11 +71,11 @@ public class InstructorViewFlow {
 				updateInstructor(id);
 			} else if (selection.equals("2")) {
 				deleteInstructor(id);
-				break;
+				return;
 			} else if (selection.equals("3")) {
-				break;
+				return;
 			} else {
-				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+				outputView.printInvalidInputMessage();
 			}
 		}
 	}
