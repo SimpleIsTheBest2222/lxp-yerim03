@@ -14,12 +14,12 @@ public class InstructorService {
 		this.instructorRepository = instructorRepository;
 	}
 
-	public Instructor createInstructor(InstructorRequest instructorRequest) {
+	public Instructor create(InstructorRequest instructorRequest) {
 		Instructor instructor = Instructor.create(instructorRequest.getName(), instructorRequest.getIntroduction());
 		return instructorRepository.save(instructor);
 	}
 
-	public List<InstructorResponse> getAllInstructors() {
+	public List<InstructorResponse> findAll() {
 		List<Instructor> instructors = instructorRepository.findAll();
 		List<InstructorResponse> responses = new ArrayList<>();
 
@@ -33,15 +33,15 @@ public class InstructorService {
 		return responses;
 	}
 
-	public Instructor getInstructorById(Long id) {
+	public Instructor findDetailById(Long id) {
 		Instructor instructor = instructorRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
 
 		return instructor;
 	}
 
-	public void updateInstructor(Long id, InstructorRequest instructorRequest) {}
+	public void update(Long id, InstructorRequest instructorRequest) {}
 
-	public void deleteInstructor(Long id) {}
+	public void delete(Long id) {}
 
 }
