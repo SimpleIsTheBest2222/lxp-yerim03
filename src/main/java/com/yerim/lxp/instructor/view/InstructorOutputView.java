@@ -5,6 +5,7 @@ import java.util.List;
 import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
 
 public class InstructorOutputView {
 	
@@ -107,12 +108,10 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printUpdateSuccess() {
-		System.out.print("""
-			------------------------------------------------------------
-			  수정되었습니다.
-			------------------------------------------------------------
-			""");
+	public void printUpdateSuccess(InstructorUpdateResponse response) {
+		System.out.println("------------------------------------------------------------");
+		System.out.println("수정되었습니다. id: " + response.getId());
+		System.out.println("------------------------------------------------------------");
 	}
 
 	public void printDeleteSuccess() {

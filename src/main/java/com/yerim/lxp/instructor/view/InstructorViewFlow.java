@@ -8,6 +8,7 @@ import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
 
 public class InstructorViewFlow {
 	private final InstructorInputView inputView = new InstructorInputView();
@@ -58,10 +59,10 @@ public class InstructorViewFlow {
 	public void showInstructorDetail() {
 		Long id = inputView.selectInstructor();
 
-		InstructorDetailResponse response = instructorController.findById(id);
-		outputView.showDetailInstructor(response);
-
 		while (true) {
+			InstructorDetailResponse response = instructorController.findById(id);
+			outputView.showDetailInstructor(response);
+
 			outputView.detailInstructorMenu();
 			String selection = inputView.read();
 
@@ -79,7 +80,10 @@ public class InstructorViewFlow {
 	}
 
 	public void updateInstructor(Long id) {
-		System.out.println("아직 개발되지 않은 기능");
+		outputView.updateInstructor();
+		InstructorUpdateRequest request = inputView.updateInstructor(id);
+		InstructorUpdateResponse response = instructorController.update(request);
+		outputView.printUpdateSuccess(response);
 	}
 
 	public void deleteInstructor(Long id) {

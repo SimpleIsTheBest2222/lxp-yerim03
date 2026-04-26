@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.yerim.lxp.instructor.domain.Instructor;
 import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
 import com.yerim.lxp.instructor.repository.InMemoryInstructorRepository;
 import com.yerim.lxp.instructor.service.InstructorService;
 import com.yerim.lxp.instructor.view.InstructorInputView;
@@ -39,7 +41,10 @@ public class InstructorController {
 		return new InstructorDetailResponse(instructor.getId(), instructor.getName(), instructor.getIntroduction());
 	}
 
-	public void update() {}
+	public InstructorUpdateResponse update(InstructorUpdateRequest request) {
+		Instructor updated = instructorService.update(request);
+		return new InstructorUpdateResponse(updated.getId());
+	}
 
 	public void delete() {}
 }

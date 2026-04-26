@@ -24,9 +24,8 @@ public class InstructorInputView {
 
 	public Long selectInstructor() {
 		System.out.print("  조회할 강사 id를 입력해주세요: ");
-		Long id = sc.nextLong();
-		sc.nextLine();
-		return id;
+		String id = sc.nextLine();
+		return Long.valueOf(id);
 	}
 
 	public InstructorUpdateRequest updateInstructor(Long id) {
