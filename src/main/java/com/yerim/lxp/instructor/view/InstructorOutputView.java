@@ -2,28 +2,28 @@ package com.yerim.lxp.instructor.view;
 
 import java.util.List;
 
-import com.yerim.lxp.instructor.domain.Instructor;
+import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
 
 public class InstructorOutputView {
-
-	public void printInstructorMainMenu() {
+	
+	public void instructorMainMenu() {
 		System.out.print("""
 			
 			============================================================
-			                           강사 관리                          
+									강사 관리
 			============================================================
-			
+		
 			  1. 강사 등록
 			  2. 강사 조회
 			  3. 뒤로 가기
-			
+		
 			------------------------------------------------------------
 			""");
 	}
 
-	public void printCreateInstructor() {
+	public void createInstructor() {
 		System.out.print("""
 			
 			============================================================
@@ -31,38 +31,40 @@ public class InstructorOutputView {
 			============================================================
 			
 			  강사 정보를 입력하세요.
-			  
-			  """);
+			
+			""");
 	}
 
-	public void printCreated(Instructor instructor) {
-		System.out.println("강사가 등록되었습니다. id: " + instructor.getId());
+	public void printCreateSuccess(InstructorCreateResponse response) {
+		System.out.println("강사가 등록되었습니다. id: " + response.getId());
 	}
 
-	public void showAllInstructors(List<InstructorListResponse> instructors) {
+	public void showAllInstructors(List<InstructorListResponse> responses) {
 		System.out.println("""
-		
+			
 			============================================================
 			                           강사 목록                           
 			============================================================
 			""");
 
-		for (InstructorListResponse instructor : instructors) {
-			System.out.println(instructor.getId() + ". " + instructor.getName());
+		for (InstructorListResponse res : responses) {
+			System.out.println(res.getId() + ". " + res.getName());
 		}
+	}
 
+	public void selectInstructorMenu() {
 		System.out.println("""
-		
+			
 			------------------------------------------------------------
+			
 			  1. 강사 선택
 			  2. 뒤로 가기
-		
+			
 			------------------------------------------------------------
-		
 			""");
 	}
 
-	public void printDetailInstructor(InstructorDetailResponse InstructorDetailResponse) {
+	public void showDetailInstructor(InstructorDetailResponse InstructorDetailResponse) {
 		System.out.print("""
 			
 			============================================================
@@ -72,7 +74,16 @@ public class InstructorOutputView {
 			  강사 id  : %d
 			  이름     : %s
 			  소개     : %s
-			
+
+			""".formatted(
+				InstructorDetailResponse.getId(),
+				InstructorDetailResponse.getName(),
+				InstructorDetailResponse.getIntroduction())
+		);
+	}
+
+	public void detailInstructorMenu() {
+		System.out.print("""
 			------------------------------------------------------------
 			
 			  1. 강사 수정
@@ -80,11 +91,13 @@ public class InstructorOutputView {
 			  3. 뒤로 가기
 			
 			------------------------------------------------------------
-			""".formatted(InstructorDetailResponse.getId(), InstructorDetailResponse.getName(), InstructorDetailResponse.getIntroduction()));
+			""");
 	}
 
-	public void printUpdateInstructor() {
+
+	public void updateInstructor() {
 		System.out.print("""
+			
 			============================================================
 			                           강사 수정                           
 			============================================================
@@ -94,21 +107,19 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printUpdated() {
+	public void printUpdateSuccess() {
 		System.out.print("""
 			------------------------------------------------------------
 			  수정되었습니다.
 			------------------------------------------------------------
-			
 			""");
 	}
 
-	public void printDeleted() {
+	public void printDeleteSuccess() {
 		System.out.print("""
-			------------------------------------------------------------
-			  삭제가 완료되었습니다. id: 2
-			------------------------------------------------------------	
-			
-		""");
+				------------------------------------------------------------
+				  삭제가 완료되었습니다. id: 2
+				------------------------------------------------------------	
+			""");
 	}
 }
