@@ -19,7 +19,6 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 		if (instructor.getId() == null) {
 			instructor = instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
 		}
-
 		Instructor saveInstructor = instructor;
 		storage.put(saveInstructor.getId(), saveInstructor);
 		return saveInstructor;
@@ -27,7 +26,8 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 
 	@Override
 	public Optional<Instructor> findById(Long id) {
-		return Optional.empty();
+		return Optional.ofNullable(storage.get(id))
+			.filter(instructor -> !instructor.isDeleted());
 	}
 
 	@Override

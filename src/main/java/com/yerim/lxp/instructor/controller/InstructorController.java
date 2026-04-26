@@ -62,15 +62,22 @@ public class InstructorController {
 
 	private void getInstructorById() {
 		while (true) {
-			output.printDetailInstructor();
+			System.out.print("조회할 강사 id를 입력해주세요: ");
 			String selection = input.readSelection();
+			Instructor instructor = instructorService.getInstructorById(Long.parseLong(selection));
+			if (instructor == null) {
+				System.out.println("존재하지 않는 강사입니다.");
+			}
+			InstructorResponse instructorResponse = new InstructorResponse(instructor.getId(), instructor.getName(), instructor.getIntroduction());
+			output.printDetailInstructor(instructorResponse);
 
-			if (selection.equals("1")) {
+			String selection1 = input.readSelection();
+			if (selection1.equals("1")) {
 				updateInstructor();
-			} else if (selection.equals("2")) {
+			} else if (selection1.equals("2")) {
 				deleteInstructor();
 				break;
-			} else if (selection.equals("3")) {
+			} else if (selection1.equals("3")) {
 				break;
 			} else {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");

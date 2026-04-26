@@ -61,16 +61,16 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printDetailInstructor() {
-		System.out.println("""
+	public void printDetailInstructor(InstructorResponse instructorResponse) {
+		System.out.print("""
 			
 			============================================================
 			                           강사 상세                          
 			============================================================
 			
-			  강사 id  : 
-			  이름     : 
-			  소개     : 
+			  강사 id  : %d
+			  이름     : %s
+			  소개     : %s
 			
 			------------------------------------------------------------
 			
@@ -79,7 +79,7 @@ public class InstructorOutputView {
 			  3. 뒤로 가기
 			
 			------------------------------------------------------------
-			""");
+			""".formatted(instructorResponse.getId(), instructorResponse.getName(), instructorResponse.getIntroduction()));
 	}
 
 	public void printUpdateInstructor() {

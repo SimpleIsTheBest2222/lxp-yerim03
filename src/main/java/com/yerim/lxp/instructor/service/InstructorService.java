@@ -30,11 +30,15 @@ public class InstructorService {
 				instructor.getIntroduction()
 			));
 		}
-
 		return responses;
 	}
 
-	public void getInstructorById(Long id) {}
+	public Instructor getInstructorById(Long id) {
+		Instructor instructor = instructorRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
+
+		return instructor;
+	}
 
 	public void updateInstructor(Long id, InstructorRequest instructorRequest) {}
 
