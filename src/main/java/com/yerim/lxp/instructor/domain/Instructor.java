@@ -20,7 +20,7 @@ public class Instructor {
 
 	public static Instructor createWithId(Long id, String name, String introduction) {
 		Instructor instructor = new Instructor();
-		instructor.id = id;
+		instructor.id = validateId(id);
 		instructor.name = validateName(name);
 		instructor.introduction = validateIntroduction(introduction);
 		return instructor;
@@ -33,6 +33,13 @@ public class Instructor {
 		if (introduction != null) {
 			this.introduction = validateIntroduction(introduction);
 		}
+	}
+
+	private static Long validateId(Long id) {
+		if (id == null) {
+			throw new IllegalArgumentException("강사 ID는 필수입니다.");
+		}
+		return id;
 	}
 
 	private static String validateName(String name) {
