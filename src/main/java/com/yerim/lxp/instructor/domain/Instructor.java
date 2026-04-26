@@ -36,7 +36,7 @@ public class Instructor {
 	}
 
 	private static Long validateId(Long id) {
-		if (id == null) {
+		if (id == null || id <= 0) {
 			throw new IllegalArgumentException("강사 ID는 필수입니다.");
 		}
 		return id;
