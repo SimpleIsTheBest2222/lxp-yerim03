@@ -2,7 +2,7 @@ package com.yerim.lxp.instructor.view;
 
 import java.util.Scanner;
 
-import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
 
 public class InstructorInputView {
 	Scanner sc = new Scanner(System.in);
@@ -13,12 +13,12 @@ public class InstructorInputView {
 		return selection;
 	}
 
-	public InstructorRequest inputCreateInstructor() {
+	public InstructorCreateRequest inputCreateInstructor() {
 		System.out.print("이름  :  ");
 		String name = sc.nextLine();
 		System.out.print("소개  :  ");
 		String introduction = sc.nextLine();
-		return new InstructorRequest(name, introduction);
+		return new InstructorCreateRequest(name, introduction);
 	}
 
 	public void selectInstructor() {}

@@ -1,11 +1,9 @@
 package com.yerim.lxp.instructor.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.yerim.lxp.instructor.domain.Instructor;
-import com.yerim.lxp.instructor.dto.InstructorRequest;
-import com.yerim.lxp.instructor.dto.InstructorResponse;
+import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
 
 public class InstructorService {
 	private final InstructorRepository instructorRepository;
@@ -14,23 +12,13 @@ public class InstructorService {
 		this.instructorRepository = instructorRepository;
 	}
 
-	public Instructor create(InstructorRequest instructorRequest) {
-		Instructor instructor = Instructor.create(instructorRequest.getName(), instructorRequest.getIntroduction());
+	public Instructor create(InstructorCreateRequest instructorCreateRequest) {
+		Instructor instructor = Instructor.create(instructorCreateRequest.getName(), instructorCreateRequest.getIntroduction());
 		return instructorRepository.save(instructor);
 	}
 
-	public List<InstructorResponse> findAll() {
-		List<Instructor> instructors = instructorRepository.findAll();
-		List<InstructorResponse> responses = new ArrayList<>();
-
-		for (Instructor instructor : instructors) {
-			responses.add(new InstructorResponse(
-				instructor.getId(),
-				instructor.getName(),
-				instructor.getIntroduction()
-			));
-		}
-		return responses;
+	public List<Instructor> findAll() {
+		return instructorRepository.findAll();
 	}
 
 	public Instructor findDetailById(Long id) {
@@ -40,7 +28,7 @@ public class InstructorService {
 		return instructor;
 	}
 
-	public void update(Long id, InstructorRequest instructorRequest) {}
+	public void update(Long id, InstructorCreateRequest instructorCreateRequest) {}
 
 	public void delete(Long id) {}
 

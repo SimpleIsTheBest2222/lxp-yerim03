@@ -1,10 +1,10 @@
-package com.yerim.lxp.instructor.dto;
+package com.yerim.lxp.instructor.dto.request;
 
-public class InstructorRequest {
+public class InstructorCreateRequest {
 	private String name;
 	private String introduction;
 
-	public InstructorRequest(String name, String introduction) {
+	public InstructorCreateRequest(String name, String introduction) {
 		this.name = name;
 		this.introduction = introduction;
 	}

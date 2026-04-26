@@ -3,7 +3,8 @@ package com.yerim.lxp.instructor.view;
 import java.util.List;
 
 import com.yerim.lxp.instructor.domain.Instructor;
-import com.yerim.lxp.instructor.dto.InstructorResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
 
 public class InstructorOutputView {
 
@@ -38,7 +39,7 @@ public class InstructorOutputView {
 		System.out.println("강사가 등록되었습니다. id: " + instructor.getId());
 	}
 
-	public void showAllInstructors(List<InstructorResponse> instructors) {
+	public void showAllInstructors(List<InstructorListResponse> instructors) {
 		System.out.println("""
 		
 			============================================================
@@ -46,7 +47,7 @@ public class InstructorOutputView {
 			============================================================
 			""");
 
-		for (InstructorResponse instructor : instructors) {
+		for (InstructorListResponse instructor : instructors) {
 			System.out.println(instructor.getId() + ". " + instructor.getName());
 		}
 
@@ -61,7 +62,7 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printDetailInstructor(InstructorResponse instructorResponse) {
+	public void printDetailInstructor(InstructorDetailResponse InstructorDetailResponse) {
 		System.out.print("""
 			
 			============================================================
@@ -79,7 +80,7 @@ public class InstructorOutputView {
 			  3. 뒤로 가기
 			
 			------------------------------------------------------------
-			""".formatted(instructorResponse.getId(), instructorResponse.getName(), instructorResponse.getIntroduction()));
+			""".formatted(InstructorDetailResponse.getId(), InstructorDetailResponse.getName(), InstructorDetailResponse.getIntroduction()));
 	}
 
 	public void printUpdateInstructor() {
