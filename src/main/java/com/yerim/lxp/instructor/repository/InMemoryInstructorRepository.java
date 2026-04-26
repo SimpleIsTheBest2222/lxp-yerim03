@@ -38,5 +38,9 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 
 	@Override
 	public void deleteById(Long id) {
+		Instructor instructor = storage.get(id);
+		if (instructor != null) {
+			instructor.delete();
+		}
 	}
 }

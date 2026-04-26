@@ -34,6 +34,9 @@ public class InstructorService {
 		return instructorRepository.save(instructor);
 	}
 
-	public void delete(Long id) {}
-
+	public void delete(Long id) {
+		Instructor instructor = instructorRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
+		instructorRepository.deleteById(instructor.getId());
+	}
 }

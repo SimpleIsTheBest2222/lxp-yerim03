@@ -77,4 +77,8 @@ public class Instructor {
 	public boolean isDeleted() {
 		return isDeleted;
 	}
+
+	public void delete() {
+		this.isDeleted = true;
+	}
 }

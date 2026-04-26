@@ -6,6 +6,7 @@ import com.yerim.lxp.instructor.controller.InstructorController;
 import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
 import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorDeleteResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
@@ -42,6 +43,10 @@ public class InstructorViewFlow {
 	public void findAllInstructor() {
 		while (true) {
 			List<InstructorListResponse> responses = instructorController.findAll();
+			if (responses.isEmpty()) {
+				System.out.println("등록된 강사가 없습니다.");
+				break;
+			}
 			outputView.showAllInstructors(responses);
 
 			outputView.selectInstructorMenu();
@@ -87,6 +92,7 @@ public class InstructorViewFlow {
 	}
 
 	public void deleteInstructor(Long id) {
-		System.out.println("아직 개발되지 않은 기능");
+		InstructorDeleteResponse response = instructorController.delete(id);
+		outputView.printDeleteSuccess(response);
 	}
 }

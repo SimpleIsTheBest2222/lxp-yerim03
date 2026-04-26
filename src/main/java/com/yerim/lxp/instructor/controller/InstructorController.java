@@ -6,6 +6,7 @@ import com.yerim.lxp.instructor.domain.Instructor;
 import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
 import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorDeleteResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
 import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
@@ -26,9 +27,6 @@ public class InstructorController {
 
 	public List<InstructorListResponse> findAll() {
 		List<Instructor> instructors = instructorService.findAll();
-		if (instructors.isEmpty()) {
-			System.out.println("등록된 강사가 없습니다.");
-		}
 
 		List<InstructorListResponse> responses = instructors.stream()
 			.map(instructor -> new InstructorListResponse(instructor.getId(), instructor.getName()))
@@ -46,5 +44,8 @@ public class InstructorController {
 		return new InstructorUpdateResponse(updated.getId());
 	}
 
-	public void delete() {}
+	public InstructorDeleteResponse delete(Long id) {
+		instructorService.delete(id);
+		return new InstructorDeleteResponse(id);
+	}
 }
