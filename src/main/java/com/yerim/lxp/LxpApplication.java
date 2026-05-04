@@ -1,14 +1,14 @@
 package com.yerim.lxp;
 
 import com.yerim.lxp.course.controller.CourseController;
-import com.yerim.lxp.instructor.controller.InstructorController;
+import com.yerim.lxp.instructor.view.InstructorViewFlow;
 import com.yerim.lxp.view.MainInputView;
 import com.yerim.lxp.view.MainOutputView;
 
 public class LxpApplication {
 	static MainOutputView mainOutputView = new MainOutputView();
 	static MainInputView mainInputView = new MainInputView();
-	static InstructorController instructorController = new InstructorController();
+	static InstructorViewFlow instructorViewFlow = new InstructorViewFlow();
 	static CourseController courseController = new CourseController();
 
 	public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class LxpApplication {
 				return true;
 			}
 			case "2" -> {
-				instructorController.handleSelection();
+				instructorViewFlow.start();
 				return true;
 			}
 			case "3" -> {

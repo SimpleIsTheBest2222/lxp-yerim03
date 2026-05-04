@@ -16,24 +16,31 @@ public class InMemoryInstructorRepository implements InstructorRepository {
 	@Override
 	public Instructor save(Instructor instructor) {
 		if (instructor.getId() == null) {
-			instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
+			instructor = instructor.createWithId(++sequence, instructor.getName(), instructor.getIntroduction());
 		}
-		Instructor saveInstructor = instructor;
-		storage.put(saveInstructor.getId(), saveInstructor);
-		return saveInstructor;
+		Instructor saved = instructor;
+		storage.put(saved.getId(), saved);
+		return saved;
 	}
 
 	@Override
 	public Optional<Instructor> findById(Long id) {
-		return Optional.empty();
+		return Optional.ofNullable(storage.get(id))
+			.filter(instructor -> !instructor.isDeleted());
 	}
 
 	@Override
 	public List<Instructor> findAll() {
-		return List.of();
+		return storage.values().stream()
+			.filter(instructor -> !instructor.isDeleted())
+			.toList();
 	}
 
 	@Override
 	public void deleteById(Long id) {
+		Instructor instructor = storage.get(id);
+		if (instructor != null) {
+			instructor.delete();
+		}
 	}
 }

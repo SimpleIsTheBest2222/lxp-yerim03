@@ -1,7 +1,10 @@
 package com.yerim.lxp.instructor.service;
 
+import java.util.List;
+
 import com.yerim.lxp.instructor.domain.Instructor;
-import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 
 public class InstructorService {
 	private final InstructorRepository instructorRepository;
@@ -10,17 +13,30 @@ public class InstructorService {
 		this.instructorRepository = instructorRepository;
 	}
 
-	public Instructor createInstructor(InstructorRequest instructorRequest) {
-		Instructor instructor = Instructor.create(instructorRequest.getName(), instructorRequest.getIntroduction());
+	public Instructor create(InstructorCreateRequest instructorCreateRequest) {
+		Instructor instructor = Instructor.create(instructorCreateRequest.getName(), instructorCreateRequest.getIntroduction());
 		return instructorRepository.save(instructor);
 	}
 
-	public void getAllInstructors() {}
+	public List<Instructor> findAll() {
+		return instructorRepository.findAll();
+	}
 
-	public void getInstructorById(Long id) {}
+	public Instructor findById(Long id) {
+		return instructorRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
+	}
 
-	public void updateInstructor(Long id, InstructorRequest instructorRequest) {}
+	public Instructor update(InstructorUpdateRequest request) {
+		Instructor instructor = instructorRepository.findById(request.getId())
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
+		instructor.update(request.getName(), request.getIntroduction());
+		return instructorRepository.save(instructor);
+	}
 
-	public void deleteInstructor(Long id) {}
-
+	public void delete(Long id) {
+		Instructor instructor = instructorRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 강사입니다."));
+		instructorRepository.deleteById(instructor.getId());
+	}
 }

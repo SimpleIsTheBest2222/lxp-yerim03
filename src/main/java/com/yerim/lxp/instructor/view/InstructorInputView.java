@@ -2,36 +2,44 @@ package com.yerim.lxp.instructor.view;
 
 import java.util.Scanner;
 
-import com.yerim.lxp.instructor.dto.InstructorRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorCreateRequest;
+import com.yerim.lxp.instructor.dto.request.InstructorUpdateRequest;
 
 public class InstructorInputView {
 	Scanner sc = new Scanner(System.in);
 
-	public String readSelection() {
+	public String read() {
 		System.out.print(">_ ");
 		String selection = sc.nextLine();
 		return selection;
 	}
 
-	public InstructorRequest inputCreateInstructor() {
-		System.out.print("이름  :  ");
+	public InstructorCreateRequest createInstructor() {
+		System.out.print("  이름  :  ");
 		String name = sc.nextLine();
-		System.out.print("소개  :  ");
+		System.out.print("  소개  :  ");
 		String introduction = sc.nextLine();
-		return new InstructorRequest(name, introduction);
+		return new InstructorCreateRequest(name, introduction);
 	}
 
-	public void selectInstructor() {}
+	public Long selectInstructor() {
+		while (true) {
+			System.out.print("  조회할 강사 id를 입력해주세요: ");
+			String id = sc.nextLine();
 
-
-	public String readDetailSelection() {
-		return null;
+			try {
+				return Long.valueOf(id);
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해주세요.");
+			}
+		}
 	}
 
-	public void inputUpdateInstructor() {
-		System.out.print("이름  :  ");
+	public InstructorUpdateRequest updateInstructor(Long id) {
+		System.out.print("  이름  :  ");
 		String name = sc.nextLine();
-		System.out.print("소개  :  ");
+		System.out.print("  소개  :  ");
 		String introduction = sc.nextLine();
+		return new InstructorUpdateRequest(id, name, introduction);
 	}
 }

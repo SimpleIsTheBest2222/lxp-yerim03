@@ -1,25 +1,31 @@
 package com.yerim.lxp.instructor.view;
 
-import com.yerim.lxp.instructor.domain.Instructor;
+import java.util.List;
+
+import com.yerim.lxp.instructor.dto.response.InstructorCreateResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorDeleteResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorDetailResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorListResponse;
+import com.yerim.lxp.instructor.dto.response.InstructorUpdateResponse;
 
 public class InstructorOutputView {
-
-	public void printInstructorMainMenu() {
+	
+	public void instructorMainMenu() {
 		System.out.print("""
 			
 			============================================================
-			                           강사 관리                          
+									강사 관리
 			============================================================
-			
+		
 			  1. 강사 등록
 			  2. 강사 조회
 			  3. 뒤로 가기
-			
+		
 			------------------------------------------------------------
 			""");
 	}
 
-	public void printCreateInstructor() {
+	public void createInstructor() {
 		System.out.print("""
 			
 			============================================================
@@ -27,46 +33,59 @@ public class InstructorOutputView {
 			============================================================
 			
 			  강사 정보를 입력하세요.
-			  
-			  """);
+			
+			""");
 	}
 
-	public void printCreated(Instructor instructor) {
-		System.out.println("강사가 등록되었습니다. id: " + instructor.getId());
+	public void printCreateSuccess(InstructorCreateResponse response) {
+		System.out.println("강사가 등록되었습니다. id: " + response.getId());
 	}
 
-	public void showAllInstructors() {
-		//모든 강사 조회 구현 예정
-
+	public void showAllInstructors(List<InstructorListResponse> responses) {
 		System.out.println("""
 			
 			============================================================
 			                           강사 목록                           
 			============================================================
-			
-			  1. 홍길동
-			  2. 김남준
+			""");
+
+		for (InstructorListResponse res : responses) {
+			System.out.println(res.getId() + ". " + res.getName());
+		}
+	}
+
+	public void selectInstructorMenu() {
+		System.out.println("""
 			
 			------------------------------------------------------------
+			
 			  1. 강사 선택
 			  2. 뒤로 가기
 			
 			------------------------------------------------------------
-			
 			""");
 	}
 
-	public void printDetailInstructor() {
-		System.out.println("""
+	public void showDetailInstructor(InstructorDetailResponse InstructorDetailResponse) {
+		System.out.print("""
 			
 			============================================================
 			                           강사 상세                          
 			============================================================
 			
-			  강사 id  : 
-			  이름     : 
-			  소개     : 
-			
+			  강사 id  : %d
+			  이름     : %s
+			  소개     : %s
+
+			""".formatted(
+				InstructorDetailResponse.getId(),
+				InstructorDetailResponse.getName(),
+				InstructorDetailResponse.getIntroduction())
+		);
+	}
+
+	public void detailInstructorMenu() {
+		System.out.print("""
 			------------------------------------------------------------
 			
 			  1. 강사 수정
@@ -77,8 +96,10 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printUpdateInstructor() {
+
+	public void updateInstructor() {
 		System.out.print("""
+			
 			============================================================
 			                           강사 수정                           
 			============================================================
@@ -88,21 +109,19 @@ public class InstructorOutputView {
 			""");
 	}
 
-	public void printUpdated() {
-		System.out.print("""
-			------------------------------------------------------------
-			  수정되었습니다.
-			------------------------------------------------------------
-			
-			""");
+	public void printUpdateSuccess(InstructorUpdateResponse response) {
+		System.out.println("------------------------------------------------------------");
+		System.out.println("수정되었습니다. id: " + response.getId());
+		System.out.println("------------------------------------------------------------");
 	}
 
-	public void printDeleted() {
-		System.out.print("""
-			------------------------------------------------------------
-			  삭제가 완료되었습니다. id: 2
-			------------------------------------------------------------	
-			
-		""");
+	public void printDeleteSuccess(InstructorDeleteResponse response) {
+		System.out.println("------------------------------------------------------------");
+		System.out.println(" 삭제가 완료되었습니다. id: " + response.getId());
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public void printInvalidInputMessage() {
+		System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 	}
 }
